@@ -4,17 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ppicon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".blogwrite">
+        <activity android:name=".homepage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".blogwrite"
+            android:parentActivityName=".homepage">
+
+        </activity>
+        <activity android:name=".search_resultpage"
+            android:parentActivityName=".homepage">
+
+        </activity>
+        <activity android:name=".blogdetails"
+            android:parentActivityName=".search_resultpage">
+
         </activity>
     </application>
 

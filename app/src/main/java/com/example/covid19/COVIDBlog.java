@@ -1,10 +1,14 @@
 package com.example.covid19;
 
 class COVIDBlog {
-    String tName,tAge,tArea,tCity,tCountry,tAdditional,tAdmit,tDis,tDiet,tMedicine,tDisease,tHname,tHdoctor,tState,tRecover;
+    String tName,tAge,tArea,tCity,tCountry,tAdditional,tAdmit,tDis,tDiet,tMedicine,tDisease,tHname,tHdoctor,tState,tRecover,currDisease,key;
 
-    public COVIDBlog(String tName, String tAge, String tArea, String tCity, String tCountry, String tAdditional, String tAdmit, String tDis, String tDiet, String tMedicine, String tDisease, String tHname, String tHdoctor, String tState, String tRecover) {
+    public COVIDBlog() {
+    }
+
+    public COVIDBlog(String tName, String currDisease, String tAge, String tArea, String tCity, String tCountry, String tAdditional, String tAdmit, String tDis, String tDiet, String tMedicine, String tDisease, String tHname, String tHdoctor, String tState, String tRecover, String key) {
         this.tName = tName;
+        this.currDisease = currDisease;
         this.tAge = tAge;
         this.tArea = tArea;
         this.tCity = tCity;
@@ -19,6 +23,23 @@ class COVIDBlog {
         this.tHdoctor = tHdoctor;
         this.tState = tState;
         this.tRecover = tRecover;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getCurrDisease() {
+        return currDisease;
+    }
+
+    public void setCurrDisease(String currDisease) {
+        this.currDisease = currDisease;
     }
 
     public String gettName() {

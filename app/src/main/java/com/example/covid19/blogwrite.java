@@ -12,7 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,18 +27,25 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class blogwrite extends AppCompatActivity {
-    EditText name,age,area,city,country,additional,admitdate,disdate,diet,state,medicine,pdisease,hname,hdoctor;
+    EditText name,age,area,city,country,additional,admitdate,disdate,diet,state,medicine,pdisease,hname,hdoctor,currDisease;
     Switch recover;
     Button submit;
-    String tName,tAge,tArea,tCity,tCountry,tAdditional,tAdmit,tDis,tDiet,tMedicine,tDisease,tHname,tHdoctor,tState,tRecover;
+    String tName,tAge,tArea,tCity,tCountry,tAdditional,tAdmit,tDis,tDiet,tMedicine,tDisease,tHname,tHdoctor,tState,tRecover,tcurrDisease;
     Boolean decision;
+    Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blog);
         Database.getInstance().initializeCOVIDApp(getApplicationContext());
-
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         name = findViewById(R.id.name);
+        currDisease = findViewById(R.id.currdisease);
         age = findViewById(R.id.age);
         area = findViewById(R.id.area);
         city = findViewById(R.id.city);
@@ -57,6 +66,7 @@ public class blogwrite extends AppCompatActivity {
 
     private  void  getDetails(){
         tName = name.getText().toString();
+        tcurrDisease = currDisease.getText().toString();
         tAge = age.getText().toString();
         tArea = area.getText().toString();
         tCity = city.getText().toString();
@@ -72,7 +82,7 @@ public class blogwrite extends AppCompatActivity {
         tHdoctor = hdoctor.getText().toString();
         decision = recover.isChecked();
         Log.d("good: ",tAge+" "+tCountry+" "+tCity);
-        Toast.makeText(this,"g: "+tAge+" "+tCountry,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,"g: "+tAge+" "+tCountry,Toast.LENGTH_SHORT).show();
         if(decision == false)
             tRecover = "Not Recovered";
         else tRecover = "Recovered";
@@ -112,7 +122,7 @@ public class blogwrite extends AppCompatActivity {
 
     private void upload() {
         getDetails();
-        if (tAge.isEmpty() || tArea.isEmpty() || tCity.isEmpty() || tCountry.isEmpty() || tAdmit.isEmpty() || tDiet.isEmpty() || tState.isEmpty()
+        if (tcurrDisease.isEmpty() || tAge.isEmpty() || tArea.isEmpty() || tCity.isEmpty() || tCountry.isEmpty() || tAdmit.isEmpty() || tDiet.isEmpty() || tState.isEmpty()
                 || tMedicine.isEmpty() || tHname.isEmpty() || tHdoctor.isEmpty()) {
             Toast.makeText(this, "Some fields are missing", Toast.LENGTH_SHORT).show();
             return;
@@ -130,9 +140,10 @@ public class blogwrite extends AppCompatActivity {
             tDisease = "No Previous Disease Found";
         }
         Log.d("good1: ",tAge+" "+tCountry+" "+tCity);
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("BlogsCOVID");
+        String lower = tcurrDisease.toLowerCase();
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("BlogsCOVID/"+lower);
         String key = dR.push().getKey();
-        COVIDBlog obj = new COVIDBlog(tName, tAge, tArea, tCity, tCountry, tAdditional, tAdmit, tDis, tDiet, tState, tMedicine, tDisease, tHname, tHdoctor, tRecover);
+        COVIDBlog obj = new COVIDBlog(tName, tcurrDisease, tAge, tArea, tCity, tCountry, tAdditional, tAdmit, tDis, tDiet, tState, tMedicine, tDisease, tHname, tHdoctor, tRecover, key);
         dR.child(key).setValue(obj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
