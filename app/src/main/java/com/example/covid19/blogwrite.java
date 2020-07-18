@@ -143,7 +143,7 @@ public class blogwrite extends AppCompatActivity {
         String lower = tcurrDisease.toLowerCase();
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("BlogsCOVID/"+lower);
         String key = dR.push().getKey();
-        COVIDBlog obj = new COVIDBlog(tName, tcurrDisease, tAge, tArea, tCity, tCountry, tAdditional, tAdmit, tDis, tDiet, tState, tMedicine, tDisease, tHname, tHdoctor, tRecover, key);
+        COVIDBlog obj = new COVIDBlog(tName, tcurrDisease, tAge, tCountry, tState, tCity, tArea, tDiet, tMedicine, tDisease, tHname, tHdoctor, tAdmit, tDis, tAdditional, tRecover, key);
         dR.child(key).setValue(obj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override

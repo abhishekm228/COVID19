@@ -6,7 +6,7 @@ class COVIDBlog {
     public COVIDBlog() {
     }
 
-    public COVIDBlog(String tName, String currDisease, String tAge, String tArea, String tCity, String tCountry, String tAdditional, String tAdmit, String tDis, String tDiet, String tMedicine, String tDisease, String tHname, String tHdoctor, String tState, String tRecover, String key) {
+    public COVIDBlog(String tName, String currDisease, String tAge, String tCountry, String tState, String tCity, String tArea, String tDiet, String tMedicine, String tDisease, String tHname, String tHdoctor, String tAdmit, String tDis,String tAdditional,String tRecover,String key) {
         this.tName = tName;
         this.currDisease = currDisease;
         this.tAge = tAge;

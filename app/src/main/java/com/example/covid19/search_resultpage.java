@@ -166,7 +166,7 @@ public class search_resultpage extends AppCompatActivity {
                 Intent intent = new Intent(search_resultpage.this,blogdetails.class);
                 //Toast.makeText(subact.this,ngoList.get(getLayoutPosition()).getNgoEmail(),Toast.LENGTH_LONG).show();
                 intent.putExtra("key",diseaseList.get(getLayoutPosition()).getKey());
-                intent.putExtra("Disease",diseaseList.get(getLayoutPosition()).getCurrDisease());
+                intent.putExtra("Disease",diseaseList.get(getLayoutPosition()).getCurrDisease().toLowerCase());
                 startActivity(intent);
             }
 
