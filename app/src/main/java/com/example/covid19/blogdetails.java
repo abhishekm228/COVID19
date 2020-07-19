@@ -1,6 +1,10 @@
 package com.example.covid19;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class blogdetails extends AppCompatActivity {
     String Key,Disease;
     Toolbar toolbar;
+    COVIDBlog placeH;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +61,7 @@ public class blogdetails extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //progressDialog.dismiss();;
                // progressBar.setVisibility(View.INVISIBLE);
-                COVIDBlog placeH = dataSnapshot.getValue(COVIDBlog.class);
+                 placeH = dataSnapshot.getValue(COVIDBlog.class);
                 //Database.getInstance().addNgo(mNgo);
                 //Toast.makeText(myngo.this,"Hello",Toast.LENGTH_LONG).show();
                 init(placeH);
@@ -123,5 +128,43 @@ public class blogdetails extends AppCompatActivity {
 
         tvAdd = (TextView) findViewById(R.id.tvAdditional);
         tvAdd.setText("Additional Details: "+placeH.gettAdditional());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.blogdetailsmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.share) {
+            try{
+                Intent i=new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT,"NGO Event");
+                String temp = "Name : "+placeH.gettName();
+                temp = temp + "\nDisease : "+placeH.getCurrDisease();
+                temp = temp + "\nRecovery Information : "+placeH.gettRecover();
+                temp = temp + "\nAge : "+placeH.gettAge();
+                temp = temp + "\nCountry : "+placeH.gettCountry();
+                temp = temp + "\nState : "+placeH.gettState();
+                temp = temp + "\nCity : "+placeH.gettCity();
+                temp = temp + "\nArea : "+placeH.gettArea();
+                temp = temp + "\nDiet : "+placeH.gettDiet();
+                temp = temp + "\nMedicine : "+placeH.gettMedicine();
+                temp = temp + "\nPrevious Disease : "+placeH.gettDisease();
+                temp = temp + "\nHospital : "+placeH.gettHname();
+                temp = temp + "\nDoctor : "+placeH.gettHdoctor();
+                temp = temp + "\nAdmission Date : "+placeH.gettAdmit();
+                temp = temp + "\nDischarge Date : "+placeH.gettDis();
+                temp = temp + "\nAdditional Details : "+placeH.gettAdditional();
+                i.putExtra(Intent.EXTRA_TEXT,temp);
+                startActivity(Intent.createChooser(i,"Share With"));
+            }catch(Exception e){}
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.covid19;
 
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -121,9 +122,15 @@ public class blogwrite extends AppCompatActivity {
     }
 
     private void upload() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Upload in Progress .....");
+        progressDialog.setCanceledOnTouchOutside(false);
+        try { progressDialog.show(); }
+        catch(Exception e) { return; }
         getDetails();
         if (tcurrDisease.isEmpty() || tAge.isEmpty() || tArea.isEmpty() || tCity.isEmpty() || tCountry.isEmpty() || tAdmit.isEmpty() || tDiet.isEmpty() || tState.isEmpty()
                 || tMedicine.isEmpty() || tHname.isEmpty() || tHdoctor.isEmpty()) {
+            progressDialog.dismiss();
             Toast.makeText(this, "Some fields are missing", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -149,9 +156,11 @@ public class blogwrite extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    progressDialog.dismiss();
                     Toast.makeText(blogwrite.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(blogwrite.this, "Failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

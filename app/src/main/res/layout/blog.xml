@@ -57,116 +57,127 @@
 
             <EditText
                 android:id="@+id/name"
-                android:hint="Name"
-
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Name"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/currdisease"
-                android:hint="Current Disease*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Current Disease*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/age"
-                android:hint="Age*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Age*"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/country"
-                android:hint="Country*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Country*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/state"
-                android:hint="State*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
-
+                android:layout_marginBottom="20dp"
+                android:hint="State*"
+                android:inputType="text" />
 
 
             <EditText
                 android:id="@+id/city"
-                android:hint="City*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="City*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/area"
-                android:hint="Area*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Area*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/diet"
-                android:hint="Diet*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Diet*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/medicine"
-                android:hint="Medicine*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Medicine*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/pdisease"
-                android:hint="Previous Disease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
-
-
-
+                android:layout_marginBottom="20dp"
+                android:hint="Previous Disease"
+                android:inputType="text" />
 
 
             <EditText
                 android:id="@+id/hname"
-                android:hint="Hospital Name*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Hospital Name*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/hdoctorname"
-                android:hint="Doctor Name*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Doctor Name*"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/dateofadmission"
-                android:hint="Date of Admission*"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Date of Admission*"
+                android:inputType="date" />
 
             <EditText
                 android:id="@+id/dateofdischarge"
-                android:hint="Date of Discharge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Date of Discharge"
+                android:inputType="date" />
 
 
             <EditText
                 android:id="@+id/additional"
-                android:hint="Write Something Informative"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:hint="Write Something Informative"
+                android:inputType="textMultiLine" />
 
             <Button
                 android:id="@+id/submit"
