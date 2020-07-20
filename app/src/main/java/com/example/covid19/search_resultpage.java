@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class search_resultpage extends AppCompatActivity {
     RecyclerView recycleView;
     TextView tvMessage;
     Toolbar toolbar;
+    ProgressBar progressBar;
      ArrayList<COVIDBlog> diseaseBlogs = new ArrayList<>();
     //ArrayList<COVIDBlog> filterList = new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -55,6 +57,7 @@ public class search_resultpage extends AppCompatActivity {
         disease=getIntent().getStringExtra("disease");
         recycleView = findViewById(R.id.recycle);
         tvMessage = findViewById(R.id.tvMessage);
+        progressBar = findViewById(R.id.progressBar);
         updatePage();
     }
 
@@ -69,6 +72,7 @@ public class search_resultpage extends AppCompatActivity {
 //        progressDialog.setCanceledOnTouchOutside(false);
 //        try { progressDialog.show(); }
 //        catch(Exception e) { return; }
+        progressBar.setVisibility(View.VISIBLE);
         diseaseBlogs.clear();
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("BlogsCOVID/"+disease);
         //final int[] c = {0};
@@ -93,6 +97,7 @@ public class search_resultpage extends AppCompatActivity {
 //                        progressBar.setVisibility(View.INVISIBLE);
 //                        
 //                    }
+                    progressBar.setVisibility(View.INVISIBLE);
                     setRecyclerView(diseaseBlogs);
                 }
 
@@ -104,6 +109,7 @@ public class search_resultpage extends AppCompatActivity {
 //                        progressBar.setVisibility(View.INVISIBLE);
 //                        
 //                    }
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(search_resultpage.this, "Failed : "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

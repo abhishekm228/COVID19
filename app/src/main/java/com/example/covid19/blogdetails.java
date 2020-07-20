@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,16 +25,18 @@ import com.google.firebase.database.ValueEventListener;
 public class blogdetails extends AppCompatActivity {
     String Key,Disease;
     Toolbar toolbar;
+    ProgressBar progressBar;
     COVIDBlog placeH;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blogdetails);
         toolbar = findViewById(R.id.toolbar);
+        progressBar = findViewById(R.id.progressBar3);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        assert actionBar != null;
+//        actionBar.setDisplayHomeAsUpEnabled(true);
         Key = getIntent().getStringExtra("key");
         Disease = getIntent().getStringExtra("Disease");
         updatePage();
@@ -53,7 +57,7 @@ public class blogdetails extends AppCompatActivity {
 //        try{progressDialog.show();}
 //        catch(Exception e) {return;}
 //        progressBar.setVisibility(View.VISIBLE);
-
+        progressBar.setVisibility(View.VISIBLE);
         //ngoEmail = ngoEmail.replaceAll("[^A-Za-z0-9]","-");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("BlogsCOVID/"+Disease+"/"+Key);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -64,6 +68,7 @@ public class blogdetails extends AppCompatActivity {
                  placeH = dataSnapshot.getValue(COVIDBlog.class);
                 //Database.getInstance().addNgo(mNgo);
                 //Toast.makeText(myngo.this,"Hello",Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.INVISIBLE);
                 init(placeH);
             }
 
@@ -71,6 +76,7 @@ public class blogdetails extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 //progressDialog.dismiss();
                // progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(blogdetails.this,"Falied : "+databaseError.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
