@@ -1,5 +1,7 @@
 package com.example.covid19;
 
+import android.util.Log;
+
 class COVIDBlog {
     String tName,tAge,tArea,tCity,tCountry,tAdditional,tAdmit,tDis,tDiet,tMedicine,tDisease,tHname,tHdoctor,tState,tRecover,currDisease,key;
 
@@ -160,5 +162,10 @@ class COVIDBlog {
 
     public void settRecover(String tRecover) {
         this.tRecover = tRecover;
+    }
+
+    public void tS(){
+        System.out.println(this.tName+" "+this.tAge);
+        Log.d("gg: ",this.tName+" "+this.tAge);
     }
 }

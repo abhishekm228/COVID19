@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -278,109 +279,145 @@ public class search_resultpage extends AppCompatActivity {
     }
 
     private void filterlu(int l, int u) {
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(age<l || age>u){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done=false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+//                temp.tS();
+//                Log.d("gg: ", String.valueOf(diseaseBlogs.size()) + i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
+        //Log.d("gg: " , String.valueOf(diseaseBlogs.size()) + i);
         setRecyclerView(diseaseBlogs);
     }
 
     private void filters(String state,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
-                    || age<l || age>u){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
     }
 
     private void filterci(String city,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
-                    || age<l || age>u){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
     }
 
     private void filterco(String country,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
-                    || age<l || age>u){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done=false;
+                for (int i = 0; i < diseaseBlogs.size(); i++) {
+                    COVIDBlog temp = diseaseBlogs.get(i);
+                    int age = Integer.parseInt(temp.gettAge().toString());
+                    if (temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
+                            || age < l || age > u) {
+                        diseaseBlogs.remove(i);
+                        done=true;
+                    }
+                }
             }
-        }
         setRecyclerView(diseaseBlogs);
     }
 
 
     public void filter(String country,String state,String city,int l,int u){
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
 //            int uc = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
-                    ||temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
-                    ||temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
-                    || age<l || age>u){
-                diseaseBlogs.remove(i);
+                if (temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
+                        || temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
+                        || temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
     }
 
     private void filtercs(String country, String state,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
-                    ||temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
-                    || age<l || age>u){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
+                        || temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
     }
 
     private void filtersc(String state, String city,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
-                    ||temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
-                    || age<l || age>u ){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (temp.gettState().toLowerCase().compareTo(state.toLowerCase()) != 0
+                        || temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
     }
 
     private void filtercc(String country, String city,int l,int u) {
-
-        for(int i=0;i<diseaseBlogs.size();i++){
-            COVIDBlog temp = diseaseBlogs.get(i);
-            int age = Integer.parseInt(temp.gettAge().toString());
-            if(temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
-                    ||temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
-                    || age<l || age>u ){
-                diseaseBlogs.remove(i);
+        boolean done=true;
+        while(done) {
+            done = false;
+            for (int i = 0; i < diseaseBlogs.size(); i++) {
+                COVIDBlog temp = diseaseBlogs.get(i);
+                int age = Integer.parseInt(temp.gettAge().toString());
+                if (temp.gettCountry().toLowerCase().compareTo(country.toLowerCase()) != 0
+                        || temp.gettCity().toLowerCase().compareTo(city.toLowerCase()) != 0
+                        || age < l || age > u) {
+                    diseaseBlogs.remove(i);
+                    done=true;
+                }
             }
         }
         setRecyclerView(diseaseBlogs);
